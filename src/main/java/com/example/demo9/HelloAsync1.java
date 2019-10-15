@@ -14,6 +14,19 @@ public class HelloAsync1 {
     @Autowired
     private MyLongJobService service;
 
+    @RequestMapping("/hello1")
+    public String hello1(){
+        LOGGER.info("start hello1");
+        try{
+            service.doLong(3);
+
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        LOGGER.info("return hello1");
+        return "Complete future finished";
+    }
+
     @RequestMapping("/hello2")
     public String hello2(){
         LOGGER.info("start hello2");
